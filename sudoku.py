@@ -1,5 +1,16 @@
 import time
 
+def print_matrix(matrix):
+    print("*" + "-" * 35 + "*")
+    for i, row in enumerate(matrix):
+		print(("|" + " {}   {}   {} |" * 3).format(*[x if x != 0 else " " for x in row]))
+		if i == 8:
+			print("*" + "-" * 35 + "*")
+		elif i % 3 == 2:
+			print("|" + "---+" * 8 + "---|")
+		else:
+			print("|" + "   +" * 8 + "   |")
+
 #Build an is_safe function
 def is_safe(n, r, c, matrix):
     for i in range(len(matrix[0])):
@@ -46,10 +57,10 @@ def solve(matrix):
     start = time.time()
     
     if solve_sudoku(matrix):
-        for i in matrix:
-            print i
+        print 'becomes ...'
+        print_matrix(matrix)
     else:
-        print 'No solution.'
+        print 'is not a solvable sudoku puzzle.'
         
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     

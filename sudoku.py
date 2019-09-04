@@ -1,9 +1,9 @@
 import time
 
-def is_safe(n, r, c, size, matrix):
-    for i in range(size):
+def is_safe(n, r, c, matrix):
+    for i in range(len(matrix[0])):
         if matrix[r][i] == n: return False
-    for i in range(size):
+    for i in range(len(matrix[0])):
         if matrix[i][c] == n: return False
         
     row_start = (r / 3) * 3
@@ -15,33 +15,33 @@ def is_safe(n, r, c, size, matrix):
             
     return True
     
-def number_unassigned(row, col, size, matrix):
-    for i in range(size):
-        for j in range(size):
+def number_unassigned(row, col, matrix):
+    for i in range(len(matrix[0])):
+        for j in range(len(matrix[0])):
             if matrix[i][j] == 0: return [i, j, 1]
             
     return [-1, -1, 0]
 
-def solve_sudoku(size, matrix):
+def solve_sudoku(matrix):
     row, col = 0, 0
-    a = number_unassigned(row, col, size, matrix)
+    a = number_unassigned(row, col,  matrix)
     
     if a[2] == 0: return True
     
     row, col = a[0], a[1]
     
-    for i in range(1, size + 1):
-        if is_safe(i, row, col, size, matrix):
+    for i in range(1, len(matrix[0]) + 1):
+        if is_safe(i, row, col, matrix):
             matrix[row][col] = i
-            if solve_sudoku(size, matrix): return True
+            if solve_sudoku(matrix): return True
             matrix[row][col] = 0
             
     return False
     
-def solve(size, matrix):
+def solve(matrix):
     start = time.time()
     
-    if solve_sudoku(size, matrix):
+    if solve_sudoku(matrix):
         for i in matrix:
             print i
     else:
@@ -49,7 +49,6 @@ def solve(size, matrix):
         
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
-size = 9
 matrix = [
 [0, 0, 0, 3, 7, 0, 0, 2, 0],
 [0, 9, 0, 0, 8, 5, 7, 0, 0],
@@ -61,4 +60,4 @@ matrix = [
 [0, 4, 8, 0, 0, 0, 6, 0, 0],
 [0, 3, 0, 0, 0, 0, 0, 4, 0]]
 
-solve(size, matrix)
+solve(matrix)

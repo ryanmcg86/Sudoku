@@ -1,5 +1,6 @@
 import time
 
+#Build an is_safe function
 def is_safe(n, r, c, matrix):
     for i in range(len(matrix[0])):
         if matrix[r][i] == n: return False
@@ -14,7 +15,8 @@ def is_safe(n, r, c, matrix):
             if matrix[i][j] == n: return False
             
     return True
-    
+ 
+#Build a number_unassigned function
 def number_unassigned(row, col, matrix):
     for i in range(len(matrix[0])):
         for j in range(len(matrix[0])):
@@ -22,6 +24,7 @@ def number_unassigned(row, col, matrix):
             
     return [-1, -1, 0]
 
+#Build a solve_sudoku function
 def solve_sudoku(matrix):
     row, col = 0, 0
     a = number_unassigned(row, col,  matrix)
@@ -37,7 +40,8 @@ def solve_sudoku(matrix):
             matrix[row][col] = 0
             
     return False
-    
+   
+#Build a solve function
 def solve(matrix):
     start = time.time()
     
@@ -49,6 +53,7 @@ def solve(matrix):
         
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
+#Run the program
 matrix = [
 [0, 0, 0, 3, 7, 0, 0, 2, 0],
 [0, 9, 0, 0, 8, 5, 7, 0, 0],

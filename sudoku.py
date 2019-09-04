@@ -27,7 +27,7 @@ def number_unassigned(row, col, matrix):
 #Build a solve_sudoku function
 def solve_sudoku(matrix):
     row, col = 0, 0
-    a = number_unassigned(row, col,  matrix)
+    a = number_unassigned(row, col, matrix)
     
     if a[2] == 0: return True
     

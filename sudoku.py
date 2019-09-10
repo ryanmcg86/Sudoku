@@ -1,5 +1,6 @@
 import time
 
+#Build a print matrix function
 def print_matrix(matrix):
     print("*" + "-" * 35 + "*")
     for i, row in enumerate(matrix):

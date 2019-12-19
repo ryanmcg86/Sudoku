@@ -4,13 +4,13 @@ import time
 def print_matrix(matrix):
     print("*" + "-" * 35 + "*")
     for i, row in enumerate(matrix):
-		print(("|" + " {}   {}   {} |" * 3).format(*[x if x != 0 else " " for x in row]))
-		if i == 8:
-			print("*" + "-" * 35 + "*")
-		elif i % 3 == 2:
-			print("|" + "---+" * 8 + "---|")
-		else:
-			print("|" + "   +" * 8 + "   |")
+        print(("|" + " {}   {}   {} |" * 3).format(*[x if x != 0 else " " for x in row]))
+        if i == 8:
+            print("*" + "-" * 35 + "*")
+        elif i % 3 == 2:
+            print("|" + "---+" * 8 + "---|")
+        else:
+            print("|" + "   +" * 8 + "   |")
 
 #Build an is_safe function
 def is_safe(n, r, c, matrix):
@@ -19,8 +19,8 @@ def is_safe(n, r, c, matrix):
     for i in range(len(matrix[0])):
         if matrix[i][c] == n: return False
         
-    row_start = (r / 3) * 3
-    col_start = (c / 3) * 3
+    row_start = (r // 3) * 3
+    col_start = (c // 3) * 3
     
     for i in range(row_start, row_start + 3):
         for j in range(col_start, col_start + 3):
@@ -56,14 +56,14 @@ def solve_sudoku(matrix):
 #Build a solve function
 def solve(matrix):
     start = time.time()
-    
+    print_matrix(matrix)
     if solve_sudoku(matrix):
-        print 'becomes ...'
+        print('becomes ...')
         print_matrix(matrix)
     else:
-        print 'is not a solvable sudoku puzzle.'
-        
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+        print('is not a solvable sudoku puzzle.')
+    matrix = dmatrix
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Run the program
 matrix = [
@@ -76,5 +76,16 @@ matrix = [
 [2, 0, 0, 6, 0, 0, 0, 0, 1],
 [0, 4, 8, 0, 0, 0, 6, 0, 0],
 [0, 3, 0, 0, 0, 0, 0, 4, 0]]
+
+dmatrix = [
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 solve(matrix)
